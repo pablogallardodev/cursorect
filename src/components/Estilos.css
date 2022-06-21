@@ -1,0 +1,11 @@
+h3 {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.succes {
+  background-color: #4CAF50;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
