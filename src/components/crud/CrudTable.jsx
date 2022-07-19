@@ -1,14 +1,14 @@
 import React from 'react'
 
-const CrudTable = ({ equipos }) => {
+const CrudTable = ({ equipos, setEditData }) => {
 
-  console.log(equipos.length);
+  
 
   return <>
     <h3>Equipos actuales</h3>
-    <table border='1'>
+    <table className='table w-50'>
       <tr>
-        <td>#</td>
+        <td>ID</td>
         <td>Equipo</td>
         <td>Pais</td>
         <td></td>
@@ -21,8 +21,9 @@ const CrudTable = ({ equipos }) => {
                   <td>{equipo.equipo}</td>
                   <td>{equipo.pais}</td>
                   <td>
-                    <button className='btn btn-warning mx-1'>Editar</button>
-                    <button className='btn btn-danger mx-1'>Eliminar</button>
+                    <button className='btn btn-outline-warning mx-1'
+                    onClick={() => setEditData(equipo)}>Editar</button>
+                    <button className='btn btn-outline-danger mx-1'>Eliminar</button>
                   </td>
                 </tr>
         })
