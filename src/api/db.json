@@ -1,0 +1,19 @@
+{
+  "equipos": [
+    {
+      "id": 1,
+      "equipo": "Barcelona",
+      "pais": "España"
+    },
+    {
+      "id": 2,
+      "equipo": "Guadalajara",
+      "pais": "México"
+    },
+    {
+      "id": 3,
+      "equipo": "Galaxy",
+      "pais": "Estados Unidos"
+    }
+  ]
+}

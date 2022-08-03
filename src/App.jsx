@@ -7,6 +7,7 @@ import React from "react"
 // import Estilos from "./components/Estilos"
 // import Navbar from "./components/Navbar";
 import CrudApp from "./components/crud/CrudApp";
+import CrudAPI from "./components/crud/CrudAPI";
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
 
   return <div className="container">
+    <CrudAPI />
     {/* <Texto name="Pablo" apellido="Gallardo" edad={25} />
     <Texto name="Juan" apellido="Ochoa" edad={30}/> 
     <Contador />
@@ -21,8 +23,8 @@ const App = () => {
     <Pokemones />
     <Referencia />
     <Estilos />
-    <Navbar /> */}
-    <CrudApp />
+    <Navbar /> 
+    <CrudApp />*/}
   </div>
 }
 
