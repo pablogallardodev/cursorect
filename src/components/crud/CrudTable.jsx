@@ -14,7 +14,7 @@ const CrudTable = ({ equipos, setEditData, deleteEquipo }) => {
       </thead>
       <tbody>
       {
-        equipos.length === 0 ? <tr>No hay datos</tr>
+        equipos.length === 0 ? <tr><td>No hay datos</td></tr>
         : equipos.map((equipo, index) => {
           return <tr key={index}>
                   <td>{equipo.equipo}</td>

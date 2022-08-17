@@ -2,7 +2,7 @@
   "equipos": [
     {
       "id": 1,
-      "equipo": "Barcelona",
+      "equipo": "Real Betis",
       "pais": "España"
     },
     {
@@ -11,9 +11,19 @@
       "pais": "México"
     },
     {
-      "id": 3,
-      "equipo": "Galaxy",
-      "pais": "Estados Unidos"
+      "equipo": "Real Madrid",
+      "pais": "España",
+      "id": 1660778752527
+    },
+    {
+      "equipo": "Boca Junior",
+      "pais": "Argentina",
+      "id": 1660778902220
+    },
+    {
+      "equipo": "Aguilas",
+      "pais": "México",
+      "id": 1660779128510
     }
   ]
 }
