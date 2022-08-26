@@ -4,3 +4,32 @@
     justify-content: center;
     align-items: center;
 }
+
+.loader {
+    border-color:#0070f3;
+    border-left-color: #0070f355;
+    border-bottom-color: #0070f355;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 5px;
+    height: 1.5rem;
+    width: 1.5rem;
+    animation: spiner 1s linear infinite;
+}
+
+@keyframes spiner {
+  0%{
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+    background-color: rgb(201, 44, 44);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}

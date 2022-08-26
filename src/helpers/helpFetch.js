@@ -21,7 +21,12 @@ export const helpFetch = () => {
         status: response.status,
         statusText: response.statusText
       })
-    }).catch( error => error )
+    }).catch( error => {
+      return {
+        error: true,
+        statusText: "Error: No se ha logrado la petición."
+      }
+    } )
   }
 
   const get = (endpoint) => customFetch(endpoint)

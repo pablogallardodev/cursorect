@@ -6,24 +6,24 @@
       "pais": "España"
     },
     {
-      "id": 2,
-      "equipo": "Guadalajara",
-      "pais": "México"
-    },
-    {
-      "equipo": "Real Madrid",
-      "pais": "España",
-      "id": 1660778752527
-    },
-    {
       "equipo": "Boca Junior",
       "pais": "Argentina",
       "id": 1660778902220
     },
     {
-      "equipo": "Aguilas",
+      "equipo": "Aguila",
       "pais": "México",
       "id": 1660779128510
+    },
+    {
+      "equipo": "Guadalajara",
+      "pais": "México",
+      "id": 1661472205628
+    },
+    {
+      "equipo": "Galaxy",
+      "pais": "EUA",
+      "id": 1661472344598
     }
   ]
 }
