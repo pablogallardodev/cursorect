@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import CrudApp from "./components/crud/CrudApp";
 import CrudAPI from "./components/crud/CrudAPI";
 import Menu from "./components/Menu";
+import ContactForm from "./components/ContactForm"
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/referencia' element={<Referencia />}/>
         <Route path='/pokemones' element={<Pokemones />}/>
         <Route path='/listaNombres' element={<ListaNombres />}/>
+        <Route path='/contactForm' element={<ContactForm />}/>
         <Route path='*' element={<h2>Curso React by Pablo Gallardo</h2>}/>
       </Routes>
     </div>
