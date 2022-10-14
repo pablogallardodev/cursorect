@@ -11,6 +11,7 @@ import CrudApp from "./components/crud/CrudApp";
 import CrudAPI from "./components/crud/CrudAPI";
 import Menu from "./components/Menu";
 import ContactForm from "./components/ContactForm"
+import Modales from "./components/Modales"
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +23,7 @@ const App = () => {
     <Menu />
     <div className="container">
       <Routes>
+        <Route path='/modales' element={<Modales />}/>
         <Route path='/contador' element={<Contador />}/>
         <Route path='/crudAPI' element={<CrudAPI />}/>
         <Route path='/crudApp' element={<CrudApp />}/>
