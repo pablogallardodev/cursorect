@@ -1,12 +1,12 @@
 import './modal.css'
 
-const Modal = () => {
+const Modal = ({ isOpen, onClose, children }) => {
 
   return (
-    <div className="modal-container">
+    <div className="modal-container" style={{ display: isOpen ? 'grid' : 'none' }}>
       <div className="modal-body">
-        <button className="modal-close">X</button>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, error itaque maxime debitis molestiae mollitia quam dolores sed esse dolorem veritatis reprehenderit voluptate expedita, nostrum fuga ullam nobis adipisci tempore!</p>
+        <button className="modal-close" onClick={onClose}>X</button>
+        {children}
       </div>
     </div>
   )
