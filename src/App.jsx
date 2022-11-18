@@ -12,6 +12,7 @@ import CrudAPI from "./components/crud/CrudAPI";
 import Menu from "./components/Menu";
 import ContactForm from "./components/ContactForm"
 import Modales from "./components/Modales"
+import TodoList from "./components/TodoList";
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,6 +24,7 @@ const App = () => {
     <Menu />
     <div className="container">
       <Routes>
+        <Route path='/todolist' element={<TodoList />}/>
         <Route path='/modales' element={<Modales />}/>
         <Route path='/contador' element={<Contador />}/>
         <Route path='/crudAPI' element={<CrudAPI />}/>
