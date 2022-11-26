@@ -18,8 +18,8 @@ const TodoList = () => {
   ])
   const completeCount = todoArray.filter(todo => todo.isComplete === true).length
   const pendingCount = todoArray.length - completeCount
-
   const [formData, setFormData] = useState({ titulo: '', descripcion: '' })
+  const [todoEditId, setTodoEditId] = useState(null)
 
   const handleChange = ({target}) => {
     setFormData({ ...formData, [target.name]: target.value })
@@ -27,19 +27,47 @@ const TodoList = () => {
 
   const addTodo = (e) => {
     e.preventDefault();
-    if (formData.titulo !== '' && formData.descripcion !== '') {
-      const todo = formData
-      todo.isComplete = false
-      todo.id = todoArray.length + 1
-
-      setTodoArray([...todoArray, todo])
+    if (todoEditId !== null) {
+      const newTodo = [...todoArray]
+      let todo = newTodo.find((todo) => todo.id === todoEditId)
+      todo.titulo = formData.titulo
+      todo.descripcion = formData.descripcion
+      setTodoArray(newTodo)
+      setTodoEditId(null)
       setFormData({ titulo: '', descripcion: '' })
+    } else {
+      if (formData.titulo !== '' && formData.descripcion !== '') {
+        const todo = formData
+        todo.isComplete = false
+        todo.id = Date.now()
+  
+        setTodoArray([...todoArray, todo])
+        setFormData({ titulo: '', descripcion: '' })
+      }
     }
   }
 
   const deleteTodo = (id) => {
     const newTodos = todoArray.filter(todo => todo.id !== id)
     setTodoArray(newTodos)
+  }
+
+  const toggleTodo = (id) => {
+    const newTodo = [...todoArray]
+    let todo = newTodo.find((todo) => todo.id === id)
+    todo.isComplete = !todo.isComplete
+    setTodoArray(newTodo)
+  }
+
+  const deleteAllComplete = () => {
+    const newTodo = todoArray.filter(todo => todo.isComplete === false)
+    setTodoArray(newTodo)
+  }
+
+  const setTodoEdit = (id) => {
+    const todo = todoArray.find((todo) => todo.id === id)
+    setFormData({ titulo: todo.titulo, descripcion: todo.descripcion})
+    setTodoEditId(id)
   }
 
   return (
@@ -53,19 +81,19 @@ const TodoList = () => {
       <div className="shadow rounded p-3 mt-5 w-100">
         <div className="d-flex align-items-center justify-content-between list-group-item">
           <h5>Todo list</h5>
-          <button className="btn btn-danger">Eliminar tareas completadas</button>
+          <button className="btn btn-danger" onClick={deleteAllComplete}>Eliminar tareas completadas</button>
         </div>
 
         {
           todoArray.map((todo) =>
             <div key={todo.id} className="d-flex align-items-center list-group-item">
-              <input type="checkbox" className="form-check-input mx-2" checked={todo.isComplete}/>
+              <input type="checkbox" className="form-check-input mx-2" checked={todo.isComplete} onChange={() => toggleTodo(todo.id)}/>
               <p className={`p-0 m-0 flex-grow-1 ${todo.isComplete ? 'text-decoration-line-through' : ''}`}>
                 {todo.titulo}<br/>
                 <span className="text-muted">{todo.descripcion}</span>
               </p>
               {todo.isComplete && <span className="badge bg-success">Completada</span>}
-              <button className="btn btn-warning mx-1">🖊</button>
+              <button className="btn btn-warning mx-1" onClick={() => setTodoEdit(todo.id)}>🖊</button>
               <button className="btn btn-danger mx-1" onClick={() => deleteTodo(todo.id)}>🗑</button>
             </div>
           )
