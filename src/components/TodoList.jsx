@@ -1,25 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Modal from './Modal'
 
 const TodoList = () => {
 
-  const [todoArray, setTodoArray] = useState([
-    {
-      titulo: "Titulo1",
-      descripcion: "Descripcion 1",
-      isComplete: false,
-      id: 1
-    },
-    {
-      titulo: "Titulo 2",
-      descripcion: "Descripcion 2",
-      isComplete: true,
-      id: 2
-    }
-  ])
+  const [todoArray, setTodoArray] = useState([])
   const completeCount = todoArray.filter(todo => todo.isComplete === true).length
   const pendingCount = todoArray.length - completeCount
   const [formData, setFormData] = useState({ titulo: '', descripcion: '' })
   const [todoEditId, setTodoEditId] = useState(null)
+
+  const [modalEliminar, setModalEliminar] = useState({
+    isOpen: false,
+    todo: {}
+  })
+
+  useEffect(() => {
+    const data = window.localStorage.getItem('todoItems')
+    if (data !== null) setTodoArray(JSON.parse(data))
+  }, [])
+
+  useEffect(() => {
+    const data = JSON.stringify(todoArray)
+    window.localStorage.setItem('todoItems', data)
+  }, [todoArray])
 
   const handleChange = ({target}) => {
     setFormData({ ...formData, [target.name]: target.value })
@@ -50,6 +53,7 @@ const TodoList = () => {
   const deleteTodo = (id) => {
     const newTodos = todoArray.filter(todo => todo.id !== id)
     setTodoArray(newTodos)
+    setModalEliminar({isOpen: false, todo: {}})
   }
 
   const toggleTodo = (id) => {
@@ -94,7 +98,7 @@ const TodoList = () => {
               </p>
               {todo.isComplete && <span className="badge bg-success">Completada</span>}
               <button className="btn btn-warning mx-1" onClick={() => setTodoEdit(todo.id)}>🖊</button>
-              <button className="btn btn-danger mx-1" onClick={() => deleteTodo(todo.id)}>🗑</button>
+              <button className="btn btn-danger mx-1" onClick={() => setModalEliminar({isOpen: true, todo: todo})}>🗑</button>
             </div>
           )
         }
@@ -103,6 +107,16 @@ const TodoList = () => {
           <span className="fw-light font-monospace">Total de tareas: {todoArray.length}, completadas: {completeCount}, pendientes: {pendingCount}</span>
         </div>
       </div>
+
+      <Modal isOpen={modalEliminar.isOpen} onClose={() => setModalEliminar({isOpen: false, todo: {}})}>
+        <div className='container text-center py-5'>
+          <h4>¿Desea eliminar la tarea '{modalEliminar.todo.titulo}'?</h4>
+          <div className='w-100 d-flex justify-content-center mt-2'>
+            <button className='btn btn-danger mx-1' onClick={() => deleteTodo(modalEliminar.todo.id)}>Si, si elimnar tarea</button>
+            <button className='btn btn-success mx-1' onClick={() => setModalEliminar({isOpen: false, todo: {}})}>NO, no eliminar tarea</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
