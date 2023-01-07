@@ -16,6 +16,7 @@ import TodoList from "./components/TodoList";
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Memorizacion from "./components/Memorizacion";
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
     <Menu />
     <div className="container">
       <Routes>
+        <Route path='/memorizacion' element={<Memorizacion />}/>
         <Route path='/todolist' element={<TodoList />}/>
         <Route path='/modales' element={<Modales />}/>
         <Route path='/contador' element={<Contador />}/>
