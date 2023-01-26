@@ -31,3 +31,8 @@
     padding: 1rem 2rem;
     border-radius: 5px;
 }
+
+.dark {
+  background-color: #eee;
+  filter: invert(1);
+}

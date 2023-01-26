@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 
-const Menu = () => {
+const Menu = ({ theme }) => {
   return (
-    <div className='d-flex flex-column justify-content-start'>
+    <div className={`d-flex flex-column justify-content-start ${theme}`}>
       <h2 className='text-center'>Menú</h2>
+      <Link to='/theme' className='btn btn-primary m-1'>Context</Link>
       <Link to='/memorizacion' className='btn btn-primary m-1'>Memorizacion</Link>
       <Link to='/todolist' className='btn btn-primary m-1'>Todo List</Link>
       <Link to='/modales' className='btn btn-primary m-1'>Modales</Link>
