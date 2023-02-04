@@ -1,8 +1,18 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { ThemeContext } from '../context/ThemeContext';
 
-const Menu = ({ theme }) => {
+const Menu = () => {
+  const { theme, handleTheme } = useContext(ThemeContext)
+
   return (
     <div className={`d-flex flex-column justify-content-start ${theme}`}>
+      <div className={`text-center py-1 my-1`}>
+        <input type="radio" name="theme" id="light" value="light" onChange={handleTheme}/>
+        <label htmlFor="light" className="mx-1">Claro</label>
+        <input type="radio" name="theme" id="dark" value="dark" onChange={handleTheme}/>
+        <label htmlFor="dark" className="mx-1">Oscuro</label>
+      </div>
       <h2 className='text-center'>Menú</h2>
       <Link to='/theme' className='btn btn-primary m-1'>Context</Link>
       <Link to='/memorizacion' className='btn btn-primary m-1'>Memorizacion</Link>

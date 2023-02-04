@@ -1,4 +1,3 @@
-import {React, useState} from "react"
 import { Routes, Route } from "react-router-dom"
 // import Texto from "./components/Texto"
 import Contador from "./components/Contador"
@@ -15,29 +14,20 @@ import Modales from "./components/Modales"
 import TodoList from "./components/TodoList";
 import Memorizacion from "./components/Memorizacion";
 import ThemeContext from "./components/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 
-  const [theme, setTheme] = useState('light')
-
-  const handleTheme = (e) => { setTheme(e.target.value) }
-
   return ( 
-    <>
-      <div className={`text-center py-1 my-1 ${theme}`}>
-        <input type="radio" name="theme" id="light" value="light" onClick={handleTheme}/>
-        <label htmlFor="light" className="mx-1">Claro</label>
-        <input type="radio" name="theme" id="dark" value="dark" onClick={handleTheme}/>
-        <label htmlFor="dark" className="mx-1">Oscuro</label>
-      </div>
+    <ThemeProvider>
       <div className={`container-fluid p-3 d-flex flex-row`}>
-        <Menu theme={theme}/>
+        <Menu/>
         <div className="container">
           <Routes>
-            <Route path='/theme' element={<ThemeContext theme={theme}/>}/>
+            <Route path='/theme' element={<ThemeContext />}/>
             <Route path='/memorizacion' element={<Memorizacion />}/>
             <Route path='/todolist' element={<TodoList />}/>
             <Route path='/modales' element={<Modales />}/>
@@ -54,7 +44,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 

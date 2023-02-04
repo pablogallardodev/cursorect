@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import CrudForm from './CrudForm'
 import CrudTable from './CrudTable'
+import { ThemeContext } from '../../context/ThemeContext';
 
 const CrudApp = () => {
 
+  const { theme } = useContext(ThemeContext)
   const [editData, setEditData] = useState(null);
   const [equipos, setEquipos] = useState(() => {
     const saveEquipos = window.localStorage.getItem("equiposData");
@@ -43,11 +45,11 @@ const CrudApp = () => {
     }
   }
 
-  return <>
+  return <div className={theme}>
     <h2>CRUD de equipos de futbol...</h2>
     <CrudForm addEquipo={addEquipo} editEquipo={editEquipo} editData={editData}/>
     <CrudTable equipos={equipos} setEditData={setEditData} deleteEquipo={deleteEquipo}/>
-  </>
+  </div>
 }
 
 export default CrudApp
