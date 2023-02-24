@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [pokemones, setPokemones] = useState([])
+
+  useEffect(() => {
+    const getPokemones = async () => {
+      // Recuperamos el listado de los pokemones
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
+      const listaPokemones = await response.json()
+      const { results } = listaPokemones // Guardamos el result
+      
+      // Ahora por cada result (pokemon), necesitamos obtener la información
+      const newPokemones = results.map( async (pokemon) => {
+        const response = await fetch(pokemon.url)
+        const poke = await response.json()
+
+        return {
+          id: poke.id,
+          name: poke.name,
+          img: poke.sprites.other.dream_world.front_default
+        }
+      })
+
+      // Como new pokemones retorna un array de promesas
+      // necesitamos esperar a que se resuelvan todas
+      // por eso recurrimos a Primise.all
+      setPokemones(await Promise.all(newPokemones))
+    }
+
+
+    getPokemones()
+  }, [])
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
       <h1>Pokédex</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      {
+        pokemones.map(pokemon => {
+          return (
+            <div>
+              <img src={pokemon.img} alt={pokemon.name} />
+              <p>{pokemon.name}</p>
+              <span>{pokemon.id}</span>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }
