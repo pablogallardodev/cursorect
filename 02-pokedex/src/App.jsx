@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import Navbar from './components/Navbar'
 
 function App() {
 
@@ -35,6 +35,8 @@ function App() {
   }, [])
 
   return (
+    <>
+    <Navbar />
     <div className="App">
       <h1>Pokédex</h1>
 
@@ -50,6 +52,7 @@ function App() {
         })
       }
     </div>
+    </>
   )
 }
 
