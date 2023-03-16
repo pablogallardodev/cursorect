@@ -5,6 +5,7 @@ nav {
   justify-content: space-around;
   align-items: center;
   padding: .5rem 0;
+  box-shadow: 4px 4px 8px #00000020;
 }
 
 nav > svg {
