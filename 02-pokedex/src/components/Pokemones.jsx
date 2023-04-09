@@ -1,5 +1,7 @@
 import usePokemones from '../hooks/usePokemones'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import './pokemones.css'
+import Cargando from './Cargando'
 
 function Pokemon({ id, nombre, imagen }) {
   return (
@@ -15,13 +17,21 @@ function Pokemon({ id, nombre, imagen }) {
 
 function Pokemones() {
 
-  const { pokemones, masPokemones } = usePokemones()
+  const { pokemones, masPokemones, verMas } = usePokemones()
   
   return (
-    <section className='pokemon-container'>
+    <InfiniteScroll
+      dataLength={pokemones.length}
+      next={masPokemones}
+      hasMore={verMas}
+      loader={<Cargando />}
+      endMessage={
+        <h3 className='titulo' style={{ gridColumn: '1/6' }}>Lo siento, no hay más pokemones por mostrar</h3>
+      }
+      className='pokemon-container'
+    >
       { pokemones.map(pokemon => <Pokemon {...pokemon} key={pokemon.id}/> )}
-      <button className='btn-buscar' onClick={masPokemones}>Mostrar más pokemones</button>
-    </section>
+    </InfiniteScroll>
   )
 }
 
