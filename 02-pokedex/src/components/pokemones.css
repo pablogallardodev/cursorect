@@ -12,11 +12,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: #f2f2f2;
+  background-color: var(--card);
   padding: 5px 0;
   box-shadow: 4px 4px 4px #21212120;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .pokemon-card:hover {
@@ -34,8 +34,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4c4c4c;
-  color: #f2f2f2;
+  background-color: #454A54;
+  color: #eee;
   font-weight: 600;
   text-transform: capitalize;
   padding: 4px 8px;

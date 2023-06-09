@@ -40,7 +40,7 @@ nav > svg {
   height: 1.5rem;
   border-radius: 1.5rem;
   background-color: #fff;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .check-switch:checked + .slider {
