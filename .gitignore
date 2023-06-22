@@ -10,6 +10,7 @@
 
 # production
 /build
+*/.vercel
 
 # misc
 .DS_Store
