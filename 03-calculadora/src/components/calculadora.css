@@ -1,0 +1,29 @@
+main {
+  background-color: var(--fondo-calculadora);
+  aspect-ratio: 9/16;
+  border-radius: 1rem;
+  height: 90%;
+  min-height: 600px;
+  box-shadow: var(--box-shadow);
+  padding: .5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:1rem;
+}
+
+input {
+  grid-column: span 4;
+  text-align: right;
+  border: none;
+  background-color: var(--fondo-calculadora);
+  padding: 0 .5rem;
+}
+
+input.resultado {
+  color: var(--secundario);
+  font-size: 3rem;
+}
+
+input.display {
+  font-size: 4rem;
+}
