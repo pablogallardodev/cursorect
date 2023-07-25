@@ -11,19 +11,19 @@ main {
   gap:1rem;
 }
 
-input {
+span {
   grid-column: span 4;
   text-align: right;
-  border: none;
-  background-color: var(--fondo-calculadora);
   padding: 0 .5rem;
 }
 
-input.resultado {
+span.resultado {
   color: var(--secundario);
   font-size: 3rem;
+  height: 3rem;
 }
 
-input.display {
+span.display {
   font-size: 4rem;
+  height: 4rem;
 }
