@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Boton from './Boton'
 import './calculadora.css'
+import Switch from './Switch'
 
 const Calculadora = () => {
 
@@ -58,6 +59,7 @@ const Calculadora = () => {
 
   return (
     <main>
+      <Switch />
       <span className="resultado">{data.resultado}</span>
       <span className="display">{data.operacion}</span>
       <Boton texto='C' clase='gris' handleClick={limpiar}/>
