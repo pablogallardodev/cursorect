@@ -1,4 +1,5 @@
 import './App.css'
+import './Ffirebase/client'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
         <button>Iniciar sesión</button>
         <h3>ó</h3>
         <button>Iniciar sesión con Google</button>
-        <h3>¿No tienes cuenta?<span> Crea una</span></h3>
+        <h3>¿No tienes cuenta?<span> Crea una cuenta</span></h3>
       </section>
     </main>
   )
