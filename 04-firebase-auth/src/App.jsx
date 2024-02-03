@@ -1,5 +1,5 @@
 import './App.css'
-import './Ffirebase/client'
+import {loginGoogle} from './Firebase/client'
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
         <input type="password" placeholder='Contraseña' />
         <button>Iniciar sesión</button>
         <h3>ó</h3>
-        <button>Iniciar sesión con Google</button>
+        <button onClick={loginGoogle}>Iniciar sesión con Google</button>
         <h3>¿No tienes cuenta?<span> Crea una cuenta</span></h3>
       </section>
     </main>
