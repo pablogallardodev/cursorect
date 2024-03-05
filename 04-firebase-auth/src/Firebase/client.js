@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 
 const PROVIDER_GOOGLE = new GoogleAuthProvider();
 const firebaseConfig = {
@@ -23,8 +23,8 @@ export function loginGoogle() {
 export const onChangeUser = (setUsuario) => {
   const auth = getAuth()
   onAuthStateChanged(auth, (user) => {
-    console.log(user);
-    const usuario = user ? user.displayName : null
+    // console.log(user);
+    const usuario = user ? user.displayName || user.email : null
     setUsuario(usuario)
   })
 }
@@ -32,4 +32,15 @@ export const onChangeUser = (setUsuario) => {
 export const onSignOut = () => {
   const auth = getAuth()
   signOut(auth)
+}
+
+export const registroUsuario = (email, password) => {
+  const auth = getAuth()
+
+  if (!email || !password)
+    return
+
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error.code, error.message))
 }

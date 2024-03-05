@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import {loginGoogle, onSignOut} from './Firebase/client'
+import {loginGoogle, onSignOut, registroUsuario} from './Firebase/client'
 import useUsuairo from './hooks/useUsuario'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     if (isLogin) {
       console.log("Iniciando sesión...", formData)
     } else {
-      console.log("Registrando usuario...", formData)
+      registroUsuario(formData.email, formData.pasword)
     }
   }
 
