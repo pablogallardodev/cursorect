@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import {loginGoogle, onSignOut, registroUsuario} from './Firebase/client'
+import {loginGoogle, loginUsuario, onSignOut, registroUsuario} from './Firebase/client'
 import useUsuairo from './hooks/useUsuario'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 
   const handleSubmit = () => {
     if (isLogin) {
-      console.log("Iniciando sesión...", formData)
+      loginUsuario(formData.email, formData.pasword)
     } else {
       registroUsuario(formData.email, formData.pasword)
     }
