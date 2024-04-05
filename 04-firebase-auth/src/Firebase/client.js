@@ -34,23 +34,42 @@ export const onSignOut = () => {
   signOut(auth)
 }
 
-export const registroUsuario = (email, password) => {
+export const registroUsuario = (formData, setFormData) => {
   const auth = getAuth()
 
-  if (!email || !password)
+  if (!formData.email || !formData.password)
     return
 
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, formData.email, formData.password)
   .then((result) => console.log(result))
-  .catch((error) => console.log(error.code, error.message))
+  .catch((err) => setFormData({...formData, error: handleError(err.code, err.message) }))
 }
 
-export const loginUsuario = (email, password) => {
+export const loginUsuario = (formData, setFormData) => {
   const auth = getAuth()
+  console.log(formData);
+  if (!formData.email || ! formData.password) return
 
-  if (!email || ! password) return
-
-  signInWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, formData.email, formData.password)
   .then((result) => console.log(result))
-  .catch((error) => console.log(error.code, error.message))
+  .catch((err) => setFormData({...formData, error: handleError(err.code, err.message) }))
+}
+
+function handleError(code, message) {
+  switch (code) {
+    case "auth/wrong-password":
+      return "Correo o contraseña incorrectos."
+    case "auth/user-not-found":
+      return "Correo o contraseña incorrectos."
+    case "auth/invalid-credential":
+      return "Correo o contraseña incorrectos."
+    case "auth/invalid-email":
+      return "Por favor valida que el correo electrónico este escrito correctamente."
+    case "auth/weak-password":
+      return "La contraseña debe tener al menos 6 caracteres."
+    case "auth/email-already-in-use":
+      return "la dirección de correo electrónico ya se encuentra en uso."
+    default:
+      return message
+  }
 }

@@ -58,3 +58,9 @@ section span {
   color: #1e90ff;
   cursor: pointer;
 }
+
+.error {
+  color: red;
+  cursor: auto;
+  margin-bottom: 15px;
+}

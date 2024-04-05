@@ -6,14 +6,16 @@ import useUsuairo from './hooks/useUsuario'
 function App() {
   const usuario = useUsuairo()
   const [isLogin, setIsLogin] = useState(true)
-  const [formData, setFormData] = useState({ email: '', pasword: ''})
+  const [formData, setFormData] = useState({ email: '', password: '', error: ''})
 
   const handleSubmit = () => {
     if (isLogin) {
-      loginUsuario(formData.email, formData.pasword)
+      loginUsuario(formData, setFormData)
     } else {
-      registroUsuario(formData.email, formData.pasword)
+      registroUsuario(formData, setFormData)
     }
+
+    setTimeout(() => setFormData({...formData, error: ''}), 3000)
   }
 
   return (
@@ -27,7 +29,8 @@ function App() {
         : <section>
             <h1>Firebase Auth</h1>
             <input type="email" placeholder='Correo electrónico' value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}/>
-            <input type="password" placeholder='Contraseña' value={formData.pasword} onChange={(e) => setFormData({...formData, pasword: e.target.value})}/>
+            <input type="password" placeholder='Contraseña' value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})}/>
+            <span className="error">{formData.error}</span>
             <button onClick={handleSubmit}>{ isLogin ? 'Iniciar sesión' : 'Registrarse' }</button>
             <h3>ó</h3>
             <button onClick={loginGoogle}>{ isLogin ? 'Iniciar sesión con Google' : 'Registrarse con Google'}</button>
