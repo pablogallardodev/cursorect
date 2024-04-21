@@ -64,3 +64,10 @@ section span {
   cursor: auto;
   margin-bottom: 15px;
 }
+
+nav {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  padding: 10px;
+}
